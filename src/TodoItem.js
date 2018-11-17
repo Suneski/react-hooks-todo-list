@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 
 function TodoItem({
   index,
   markAsComplete,
   removeItem,
-  todoItem
+  todoListItem
 }) {
 
-  const todoStatus = todoItem.isCompleted ? "line-through" : "none";
-  const markAsCompleteButtonText = todoItem.isCompleted ? "Mark As Incomplete" : "Mark As Complete";
+  const todoStatus = todoListItem.isCompleted ? "line-through" : "none";
+  const markAsCompleteButtonText = todoListItem.isCompleted ? "Mark As Incomplete" : "Mark As Complete";
 
   return (
     <div style={{ textDecoration: todoStatus }}>
-      {todoItem.text}
+      {todoListItem.text}
       <button onClick={() => markAsComplete(index)}>
         {markAsCompleteButtonText}
       </button>
@@ -20,7 +20,7 @@ function TodoItem({
         Remove
       </button>
     </div>
-  )
+  );
 }
 
 export default TodoItem;

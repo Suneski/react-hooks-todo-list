@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function TodoInput({ addTodo }) {
+function TodoInput({
+  addTodo,
+  clearAll,
+  completeAll,
+  incompleteCount,
+  listLength
+}) {
   const [inputValue, setInputValue] = useState("");
 
   const handleInput = (e) => {
@@ -30,8 +36,18 @@ function TodoInput({ addTodo }) {
         value={inputValue}
       />
       <button onClick={(e) => handleSubmit(inputValue)}>Submit</button>
+      {listLength > 0 &&
+        <button onClick={() => clearAll()}>
+          Empty Out List
+        </button>
+      }
+      {incompleteCount > 0 &&
+        <button onClick={() => completeAll()}>
+          Mark All Complete
+        </button>
+      }
     </div>
-  )
+  );
 }
 
-export default TodoInput;
+export default TodoInput
