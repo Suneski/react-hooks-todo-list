@@ -11,11 +11,29 @@ function App() {
     setTodoItem(newTodo);
   };
 
+  const removeTodo = (index) => {
+    const newTodo = [...todoItems];
+    newTodo.splice(index, 1);
+    setTodoItem(newTodo);
+  };
+
+  const markAsComplete = (index) => {
+    const newTodos = [...todoItems];
+    todoItems[index].isCompleted = !todoItems[index].isCompleted;
+    setTodoItem(newTodos);
+  };
+
   return (
     <div className="App">
       <h1>To-Do List</h1>
       {todoItems.map((todoItem, index) => (
-        <TodoItem todoItem={todoItem} />
+        <TodoItem
+          index={index}
+          key={index}
+          markAsComplete={markAsComplete}
+          removeItem={removeTodo}
+          todoItem={todoItem}
+        />
       ))}
       <TodoInput addTodo={addTodo}/>
     </div>
