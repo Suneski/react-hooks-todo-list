@@ -8,14 +8,20 @@ function TodoInput({
   listLength
 }) {
   const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState(false);
 
   const handleInput = (e) => {
     setInputValue(e.target.value);
+    setError(false);
   }
 
   const handleSubmit = (e) => {
     if (!inputValue.trim().length) {
       setInputValue(inputValue.trim());
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 1000);
       return;
     };
     addTodo(inputValue);
@@ -45,6 +51,9 @@ function TodoInput({
         <button onClick={() => completeAll()}>
           Mark All Complete
         </button>
+      }
+      {error &&
+        <div style={{ color: "red" }}>ERROR: To-do item must be at least 1 character long</div>
       }
     </div>
   );

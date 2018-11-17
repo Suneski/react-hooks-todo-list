@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState
+} from 'react';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import './App.css';
@@ -47,6 +50,12 @@ function App() {
     setIncompleteCount(0);
     setTodoItem(newTodos);
   }
+
+  useEffect(() => {
+    if (incompleteCount > 0 && incompleteCount % 5 === 0) {
+      alert(`Hey, heads up. You have ${incompleteCount} incomplete items. Let's get to work!`)
+    }
+  }, [incompleteCount]);
 
   return (
     <div className="App">
